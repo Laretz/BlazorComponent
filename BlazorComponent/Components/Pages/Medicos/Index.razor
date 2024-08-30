@@ -1,0 +1,43 @@
+﻿@page "/medicos"
+@rendermode InteractiveServer
+@inject IMedicoRepository repository
+
+<h3> Médicos </h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CRM</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var medico in Medicos)
+        {
+            <tr>
+                <td>@medico.Id</td>
+                <td>@medico.Name</td>
+                <td>@medico.Crm</td>
+                <td>
+                    <button class="btn btn-outline-danger" @onclick="@(()=> Delete(medico))">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    public List<Medico>? Medicos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Medicos = await repository.GetAllAsync();
+    }
+
+    public void Delete(Medico medico)
+    {
+        Medicos?.Remove(medico);
+    }
+}
