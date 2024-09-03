@@ -1,0 +1,19 @@
+﻿<h3>MedicoTemplateList</h3>
+@foreach (var medico in Medicos)
+{
+    <tr>
+        <td>@medico.Id</td>
+        <td>@medico.Name</td>
+        <td>@medico.Crm</td>
+        <td>
+            <button class="btn btn-outline-danger" @onclick="@(()=> DeleteCallBack.InvokeAsync(medico))">Delete</button>
+        </td>
+    </tr>
+}
+@code {
+    [Parameter]
+    public List<Medico>? Medicos { get; set; }
+
+    [Parameter]
+    public EventCallback<Medico> DeleteCallBack { get; set; }
+}
