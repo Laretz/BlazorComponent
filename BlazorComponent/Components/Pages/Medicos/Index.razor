@@ -1,10 +1,15 @@
 ﻿@page "/medicos"
 @rendermode InteractiveServer
 @inject IMedicoRepository repository
+@inject NavigationManager navigation
 
 <CustomHeader>
     List of doctors
 </CustomHeader>
+
+<button class="btn btn-primary" @onclick="NewDoctor">
+    register new doctor
+</button>
 
 <table class="table table-striped">
     <thead>
@@ -31,5 +36,10 @@
     public void Delete(Medico medico)
     {
         Medicos?.Remove(medico);
+    }
+
+    public void NewDoctor()
+    {
+        navigation.NavigateTo("/medicos/create");
     }
 }
