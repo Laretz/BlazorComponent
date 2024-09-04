@@ -1,0 +1,16 @@
+﻿@if (ChildContent is null)
+{
+    <div class=" alert alert-info" role="alert">
+        header not defined
+    </div>
+}
+else
+{
+    <div class=" alert alert-info" role="alert">
+        @ChildContent
+    </div>
+}
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
